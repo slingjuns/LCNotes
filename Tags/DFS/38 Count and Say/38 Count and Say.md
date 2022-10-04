@@ -1,0 +1,33 @@
+# 38. Count and Say
+
+Careful: No
+Date: October 4, 2022
+Difficulty: Medium
+Index: 38
+Programming Language: C++
+Tags: DFS
+Link: https://leetcode.com/problems/count-and-say/
+
+```cpp
+class Solution {
+public:
+    string countAndSay(int n) {
+        if (n==1) return "1";
+        string prev = countAndSay(n-1);
+        int left = 0; 
+        string res = "";
+        while (left < prev.length()) {
+            int count = 1; 
+            char ch = prev[left];
+            left++;
+            while (left > 0 && left < prev.length() && ch == prev[left]) {
+                count++;
+                left++;
+            }
+            res += to_string(count) + ch;
+        }
+        return res;
+    }
+    
+};
+```
